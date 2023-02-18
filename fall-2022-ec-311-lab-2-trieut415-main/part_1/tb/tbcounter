@@ -1,0 +1,51 @@
+`timescale 1ns / 1ps
+//////////////////////////////////////////////////////////////////////////////////
+// Company: 
+// Engineer: 
+// 
+// Create Date: 11/04/2022 02:25:37 PM
+// Design Name: 
+// Module Name: tbcounter
+// Project Name: 
+// Target Devices: 
+// Tool Versions: 
+// Description: 
+// 
+// Dependencies: 
+// 
+// Revision:
+// Revision 0.01 - File Created
+// Additional Comments:
+// 
+//////////////////////////////////////////////////////////////////////////////////
+
+module tbcounter(
+
+    );
+    
+    reg reset,clock,inc;
+    wire [7:0] count;
+    
+    counter1 A0(.clock(clock),.reset(reset),.inc(inc),.count(count));
+
+    initial begin
+        clock = 0;
+        forever #5 clock = ~clock;
+    end
+
+    initial begin
+        reset = 1;
+        #10 reset = ~reset;
+        #20 reset = ~reset;
+    end
+
+    initial begin
+        inc = 0;
+    end
+
+    always begin
+        #100 inc = inc+1;
+    end
+
+
+endmodule

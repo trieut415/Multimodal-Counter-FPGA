@@ -1,0 +1,51 @@
+`timescale 1ns / 1ps
+//////////////////////////////////////////////////////////////////////////////////
+// Company: 
+// Engineer: 
+// 
+// Create Date: 11/04/2022 02:46:51 PM
+// Design Name: 
+// Module Name: tbdebouncer
+// Project Name: 
+// Target Devices: 
+// Tool Versions: 
+// Description: 
+// 
+// Dependencies: 
+// 
+// Revision:
+// Revision 0.01 - File Created
+// Additional Comments:
+// 
+//////////////////////////////////////////////////////////////////////////////////
+
+
+module tbdebouncer(
+
+    );
+    reg clock, reset, button_in;
+    wire button_out;
+    
+    debouncer A0(.clk_i(clock),.resetn_i(reset),.button_push(button_in),.out_o(button_out));
+    
+    always begin
+        #3 clock = ~clock;
+    end
+    
+    initial begin
+        clock = 0;
+        reset = 0;
+        #10 reset = 1;
+    end
+    
+    initial begin
+        button_in = 0;
+    end
+    
+    always begin
+        #200 button_in = ~button_in;
+    end
+    
+    endmodule
+    
+    
